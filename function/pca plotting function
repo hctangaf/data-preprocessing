@@ -1,0 +1,11 @@
+def pca_plot(data):
+    global pca
+    pca = PCA()
+    pca.fit_transform(data)
+    plt.figure()
+    plt.plot(np.cumsum(pca.explained_variance_ratio_))
+    plt.xlabel('number of component')
+    plt.ylabel('cumulative explained variance')
+    plt.title('Number of component corresponding to explained variance ratio')
+    
+pca_plot(scaled_data)
