@@ -1,0 +1,16 @@
+def drop_outlier(dataframe):
+    global new_df1
+    new_df1 = dataframe[number]
+    Q1 = new_df1.quantile(.25)
+    Q3 = new_df1.quantile(.75)
+    IQR = Q3 - Q1
+    test1 = new_df1 < (Q1 - 1.5 * IQR)
+    test2 = new_df1 > (Q3 + 1.5 * IQR)
+    index_to_be_dropped = new_df1[(test1 | test2).any(axis=1)].index
+    new_df1 = new_df1.drop(index_to_be_dropped, axis=0)
+    x, _ = np.shape(df)
+    a, _ = np.shape(new_df1)
+    number_of_rows_removed = x - a
+    print(f'number of row removed: {number_of_rows_removed}')
+
+drop_outlier(df)   
